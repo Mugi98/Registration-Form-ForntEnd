@@ -1,0 +1,26 @@
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+    box-shadow: 0 0 13px inset rgba(255, 0, 0, 0.09);
+}
+input.ng-valid.ng-touched
+{
+    border: 1px solid green;
+    box-shadow: 0 0 13px inset rgba(81, 136, 80, 0.09);
+}
+
+
+
+.age{
+    margin: auto 10%;
+}
+
+.height{
+    flex-direction: column;
+    bottom: 10%;
+    
+}
+
+#gender-label{
+    padding-right: 20%;
+    /* margin-left: 20% !important; */
+}

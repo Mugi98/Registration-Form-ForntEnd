@@ -1,0 +1,131 @@
+<form *ngIf="this.getData.length!=0" class="row g-3 d-flex flex-column" [(formGroup)]="updatedRegistrationForm" >
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"><h3>Personal Details</h3></a>
+    </nav>
+    <div class="row col-md-12 ml-2">
+      <div class="col-md-2">
+        <label  class="form-label">Name</label>
+        <input type="text" formControlName= "name" class="form-control">
+      </div>
+      <div class="col-md-2 mr-5">
+        <label class="form-label">Middle Name</label>
+        <input type="text" formControlName= "middlename" class="form-control">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Last Name</label>
+        <input type="text" formControlName="lastname" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <label  class="form-label">Mobile Number</label>
+        <input type="number" formControlName="mobilenumber" class="form-control">
+      </div>
+    </div>
+    <div class="row col-md-12 mt-3 ml-2 d-flex ">
+      <div class="col-md-3">
+        <label  class="form-label">Birthday</label>
+        <input type="text" formControlName="dob" (ngModelChange)="calculateAge($event)" class="form-control" [bsConfig]="{ isAnimated: true }" bsDatepicker>
+      </div>
+      <div class="col-md-2">
+        <label  class="form-label">Age</label>
+        <input type="text" formControlName="age" value="{{age}}" class="form-control">
+      </div>
+      <div>
+      <div>
+        <label class="form-label" id="gender-label">Gender</label>
+  
+      <div class= "row col-mb-1 px-3 py-3">
+        <div class=" custom-control custom-radio" *ngFor = "let gender of genders">
+            <input type="radio" id="{{gender.id}}" name="gender" value="{{gender.genderType}}" class="custom-control-input" formControlName="gender">
+            <label class="custom-control-label px-3" for="{{gender.id}}">{{gender.genderType}}</label>
+          </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="row col-md-12 mt-3 ml-3 d-flex justify-content-between">
+      <div class="row col-md-10" formGroupName="physical">
+        <div class="col-md-4">
+          <label  class="form-label">Blood Group</label>
+          <input type="text" formControlName="bloodgroup" class="form-control">
+        </div>
+        <div class="col-md-3 mr-3">
+          <label  class="form-label">Height</label>
+          <input type="text" formControlName="height" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <label  class="form-label">Weight</label>
+          <input type="number" formControlName="weight" class="form-control">
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mt-2">
+      <a class="navbar-brand" href="#"><h3>Address</h3></a>
+      </nav>
+  <div class="row col-md-12 ml-2 mt-3 d-flex justify-content-between">
+    <div class="col-md-4">
+      <label for="inputAddress" class="form-label">Address</label>
+      <input type="text" formControlName="address" class="form-control" id="inputAddress" placeholder="Enter Address">
+    </div>
+    <div class="col-md-2 ml-9">
+      <label  class="form-label">State</label>
+      <select formControlName="state" class="form-select form-control" (change)="changeState($event)">
+        <option *ngFor ="let states of state.newData" value='{{states.state}}'>{{states.state}}</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">City</label>
+      <select  formControlName="city" class="form-control">
+        <option *ngFor ="let cityx of cities1">{{cityx}}</option> 
+      </select>  
+    </div>
+  <div class="col-md-2 mr-3">
+    <label for="inputZip" class="form-label">Zip</label>
+    <input type="number" formControlName="zipcode" class="form-control" id="inputZip" >
+  </div>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mt-2">
+    <a class="navbar-brand" href="#"><h3>Academic Details</h3></a>
+    </nav>
+  <div class="row col-md-12 mt-5 ml-4" formGroupName="academicScore">
+    <select formControlName="academic" class="form-select form-control form-select-lg col-mb-3" style="width: 400px" aria-label=".form-select-lg example">  
+      <option selected>Select Academic</option>
+      <option value="SSC">SSC</option>
+      <option value="HSC/Diploma">HSC/Diploma</option>
+      <option value="Degree">Degree</option>
+    </select>
+    <div class="col-md-2 ">
+      <input type="number" formControlName="hundred" (change)="percentageOfUser()" class="form-control" placeholder="100">
+    </div>
+    <div class="col-md-2 ">
+      <input type="text" formControlName="percentage" class="form-control" [value]="outOf" placeholder="%">
+    </div>
+  </div>
+  <!-- </div> -->
+  
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mt-2">
+    <a class="navbar-brand" href="#"><h3>Profile Images</h3></a>
+    </nav>
+    <div class="row col-mb-12 ml-5 mt-4">
+      <div class="col-mb-6" >
+        <label for="formFile" class="form-label">Selct Your Profile Picture</label>
+        <input class="form-control"  type="file"  (change)="Profile($event)">
+        <button class="btn btn-primary col-md-3" (click)="Upload()">Upload </button>
+      </div>
+        <div class="col-md-6">
+          <img [src]="currentimages"  class="updatedImage">
+        </div>
+    </div>
+  
+  <div class="col-12">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Do You agree with Terms and Condition.
+      </label>
+    </div>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">submit</button>
+  </div>
+</form>
+

@@ -1,0 +1,7 @@
+.updatedImage{
+    padding: 10px 10px;
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+}

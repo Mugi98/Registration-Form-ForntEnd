@@ -1,0 +1,37 @@
+<button  class="btn btn-success"(click)="addUser()">Add Users</button>
+<table class="table ">
+    <thead>
+        <tr>
+            <th scope="col">Profile Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">City</th>
+            <th scope="col">Mobile Number</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Age</th>
+            <th scope="col">Sex</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody >
+        <tr *ngFor="let showData of listUsersData.newData | paginate: { itemsPerPage: 3, currentPage: p}">
+            <td><img [src]="showData.images" class="profileImages"></td>
+            <td>{{showData.name}} {{showData.middlename}} {{showData.lastname}}</td>
+            <td>{{showData.city}}</td>
+            <td>{{showData.mobilenumber}}</td>
+            <td>{{showData.dob | date: "MM/dd/yyyy"}}</td>
+            <td>{{showData.age}}</td>
+            <td>{{showData.gender}}</td>
+            <td>
+                <button  class="btn btn-success"(click)="onEdit(showData._id)">Edit</button>
+                <span class='px-2'></span>
+                <button  class="btn btn-danger"(click)="onDelete(showData._id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+    <div>
+        <pagination-controls   maxSize="3" directionLinks="true" (pageChange)="p = $event"></pagination-controls>
+    </div>
+</table>
+
+
+
